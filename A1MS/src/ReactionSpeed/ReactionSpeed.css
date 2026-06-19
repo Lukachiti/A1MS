@@ -1,0 +1,32 @@
+.reaction-box {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.1s ease;
+  background-color: rgba(4, 12, 4, 0.5);
+}
+
+.reaction-box.waiting {
+  background-color: #b22222;
+}
+
+.reaction-box.clickMe {
+  background-color: #91ff00;
+}
+
+.reaction-text {
+  font-family: 'Nexokora', sans-serif;
+  letter-spacing: 2px;
+  text-align: center;
+  pointer-events: none;
+  background: transparent;
+}
+
+.reaction-box.clickMe .reaction-text {
+  color: black;
+}
+
+.reaction-box:not(.clickMe) .reaction-text {
+  color: white;
+}

@@ -1,0 +1,22 @@
+.cps-area {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.cps-click-overlay {
+  font-family: 'Nexokora', sans-serif;
+  color: #91ff00;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  pointer-events: none;
+  background: transparent;
+}
+
+.cps-area:active {
+  background-color: rgba(145, 255, 0, 0.05);
+}
