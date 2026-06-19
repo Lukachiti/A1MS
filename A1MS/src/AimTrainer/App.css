@@ -481,7 +481,7 @@ p {
 
 .target {
   background-color: transparent;
-  background-image: url(assets/Screenshot_2026-06-18_101114-removebg-preview.png);
+  background-image: url(../assets/Screenshot_2026-06-18_101114-removebg-preview.png);
   background-size: cover;
   border-radius: 100%;
   cursor: crosshair;

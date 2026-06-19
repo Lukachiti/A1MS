@@ -15,6 +15,7 @@ function CpsSpeed() {
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [cpsResult, setCpsResult] = useState(null);
+  const [personalBest, setPersonalBest] = useState(0);
 
   const handleStart = () => {
     if (isActive) return;
@@ -49,10 +50,16 @@ function CpsSpeed() {
   const handleStop = () => {
     setIsActive(false);
     startRef.current.style.display = "block";
-
+    
     setClicks((finalClicks) => {
       const computedCps = (finalClicks / time).toFixed(2);
       setCpsResult(computedCps);
+
+      const savedPb = localStorage.getItem("pb_cps_speed") || 0;
+      const currentPb = Math.max(Number(savedPb), Number(computedCps));
+      localStorage.setItem("pb_cps_speed", currentPb);
+      setPersonalBest(currentPb.toFixed(2));
+
       setShowModal(true);
       return finalClicks;
     });
@@ -110,25 +117,21 @@ function CpsSpeed() {
                 <img src={scoreImg} alt="cps"></img>
                 <div>
                   <h6>Current CPS:</h6>
-                  <h4>
-                    {isActive && clicks > 0
-                      ? (clicks / (time - timeLeft || 1)).toFixed(1)
-                      : "0.0"}
-                  </h4>
+                  <h4>{isActive && clicks > 0 ? (clicks / (time - timeLeft || 1)).toFixed(1) : "0.0"}</h4>
                 </div>
               </div>
             </div>
 
-            <div
-              className="trainingArea cps-area"
+            <div 
+              className="trainingArea cps-area" 
               ref={trainingAreaRef}
               onClick={handleAreaClick}
             >
-              <button
-                ref={startRef}
-                id="start"
-                className="start"
-                style={{ fontWeight: "900" }}
+              <button 
+                ref={startRef} 
+                id="start" 
+                className="start" 
+                style={{ fontWeight: "900" }} 
                 onClick={(e) => {
                   e.stopPropagation();
                   handleStart();
@@ -149,20 +152,19 @@ function CpsSpeed() {
             <hr className="scoreboard-divider" />
             <div className="modal-stats">
               <div className="modal-stat-row">
-                <span>Total Clicks:</span>
+                <span>Total Clicks:</span> 
                 <span className="stat-val">{clicks}</span>
               </div>
               <div className="modal-stat-row">
-                <span>CPS Score:</span>
+                <span>CPS Score:</span> 
                 <span className="stat-val Highlight">{cpsResult} Click/s</span>
               </div>
+              <div className="modal-stat-row">
+                <span>Personal Best:</span> 
+                <span className="stat-val">{personalBest} Click/s</span>
+              </div>
             </div>
-            <button
-              className="modal-close-btn"
-              onClick={() => setShowModal(false)}
-            >
-              Close
-            </button>
+            <button className="modal-close-btn" onClick={() => setShowModal(false)}>Close</button>
           </div>
         </div>
       )}

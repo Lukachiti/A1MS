@@ -25,6 +25,7 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalStats, setModalStats] = useState(null);
+  const [personalBest, setPersonalBest] = useState(0);
 
   const handleStart = () => {
     if (isActive) return;
@@ -87,6 +88,11 @@ function App() {
     startRef.current.style.display = "block";
     setScore((finalScore) => {
       console.log("Game Over. Final Score:", finalScore);
+
+      const savedPb = localStorage.getItem("pb_aim_trainer") || 0;
+      const currentPb = Math.max(Number(savedPb), finalScore);
+      localStorage.setItem("pb_aim_trainer", currentPb);
+      setPersonalBest(currentPb);
 
       setModalStats({
         score: finalScore,
@@ -328,6 +334,7 @@ function App() {
             <div className="modal-stats">
               <div className="modal-stat-row"><span>Category:</span> <span className="stat-val">{modalStats.category}</span></div>
               <div className="modal-stat-row"><span>Final Score:</span> <span className="stat-val Highlight">{modalStats.score}</span></div>
+              <div className="modal-stat-row"><span>Personal Best:</span> <span className="stat-val">{personalBest}</span></div>
               <div className="modal-stat-row"><span>Duration:</span> <span className="stat-val">{modalStats.time}s</span></div>
               <div className="modal-stat-row"><span>Target Size:</span> <span className="stat-val">{modalStats.size}px</span></div>
             </div>

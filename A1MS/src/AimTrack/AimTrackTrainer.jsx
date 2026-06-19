@@ -23,6 +23,7 @@ function AimTrackTrainer() {
   const [isActive, setIsActive] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [personalBest, setPersonalBest] = useState(0);
 
   const positionRef = useRef({ x: 0, y: 0 });
   const velocityRef = useRef({ x: 2, y: 2 });
@@ -116,7 +117,15 @@ function AimTrackTrainer() {
     if (targetRef.current) targetRef.current.style.display = "none";
     if (startRef.current) startRef.current.style.display = "block";
     cancelAnimationFrame(animationRef.current);
-    setShowModal(true);
+
+    setScore((finalScore) => {
+      const savedPb = localStorage.getItem("pb_aim_track") || 0;
+      const currentPb = Math.max(Number(savedPb), finalScore);
+      localStorage.setItem("pb_aim_track", currentPb);
+      setPersonalBest(currentPb);
+      setShowModal(true);
+      return finalScore;
+    });
   };
 
   const dropdownToggleStyle = {
@@ -316,6 +325,7 @@ function AimTrackTrainer() {
             <div className="modal-stats">
               <div className="modal-stat-row"><span>Category:</span> <span className="stat-val">{category}</span></div>
               <div className="modal-stat-row"><span>Tracking Score:</span> <span className="stat-val Highlight">{score}</span></div>
+              <div className="modal-stat-row"><span>Personal Best:</span> <span className="stat-val">{personalBest}</span></div>
             </div>
             <button className="modal-close-btn" onClick={() => setShowModal(false)}>Close</button>
           </div>

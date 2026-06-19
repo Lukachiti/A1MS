@@ -8,6 +8,7 @@ function ReactionSpeed() {
   const [startTime, setStartTime] = useState(0);
   const [reactionTime, setReactionTime] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [personalBest, setPersonalBest] = useState(null);
   const timerRef = useRef(null);
 
   const startTest = () => {
@@ -31,6 +32,14 @@ function ReactionSpeed() {
       const finalTime = Date.now() - startTime;
       setReactionTime(finalTime);
       setGameState("results");
+
+      const savedPb = localStorage.getItem("pb_reaction_speed");
+      let currentPb = finalTime;
+      if (savedPb !== null) {
+        currentPb = Math.min(Number(savedPb), finalTime);
+      }
+      localStorage.setItem("pb_reaction_speed", currentPb);
+      setPersonalBest(currentPb);
       setShowModal(true);
     } else if (gameState === "results" || gameState === "idle") {
       startTest();
@@ -84,6 +93,10 @@ function ReactionSpeed() {
               <div className="modal-stat-row">
                 <span>Result:</span> 
                 <span className="stat-val Highlight">{reactionTime}ms</span>
+              </div>
+              <div className="modal-stat-row">
+                <span>Personal Best:</span> 
+                <span className="stat-val">{personalBest}ms</span>
               </div>
             </div>
             <button className="modal-close-btn" onClick={() => setShowModal(false)}>Close</button>
