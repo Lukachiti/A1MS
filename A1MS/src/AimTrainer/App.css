@@ -521,3 +521,16 @@ img {
   width: 900px;
 }
 
+  
+@media (max-width: 1300px) {
+  .App-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
+@media (max-width: 1200px) {
+  
+  
+}
+
