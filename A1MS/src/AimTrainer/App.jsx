@@ -15,7 +15,10 @@ function App() {
   const targetRef = useRef(null);
   const startRef = useRef(null);
 
-  const [scoreArray, setScoreArray] = useState([]);
+  const [scoreArray, setScoreArray] = useState(() => {
+    const savedScores = localStorage.getItem("aim_trainer_scores");
+    return savedScores ? JSON.parse(savedScores) : [];
+  });
   const [score, setScore] = useState(0);
   const [category, setCategory] = useState("Beginner");
   const [difficulty, setDifficulty] = useState(100);
@@ -25,11 +28,12 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalStats, setModalStats] = useState(null);
-  const [personalBest, setPersonalBest] = useState(0);
+  const [personalBest, setPersonalBest] = useState(() => {
+    return Number(localStorage.getItem("pb_aim_trainer")) || 0;
+  });
 
   const handleStart = () => {
     if (isActive) return;
-    console.log("Start button clicked");
     startRef.current.style.display = "none";
     setScore(0);
     setIsActive(true);
@@ -87,8 +91,6 @@ function App() {
     
     startRef.current.style.display = "block";
     setScore((finalScore) => {
-      console.log("Game Over. Final Score:", finalScore);
-
       const savedPb = localStorage.getItem("pb_aim_trainer") || 0;
       const currentPb = Math.max(Number(savedPb), finalScore);
       localStorage.setItem("pb_aim_trainer", currentPb);
@@ -107,6 +109,7 @@ function App() {
           ...prevArray,
           { score: finalScore, category: category, date: new Date().toLocaleDateString() },
         ];
+        localStorage.setItem("aim_trainer_scores", JSON.stringify(updatedArray));
         return updatedArray;
       });
 
@@ -288,7 +291,7 @@ function App() {
                         min="10"
                         max="160"
                         onChange={(e) =>
-                          setDifficulty(Math.max(10, Number(e.target.value)))
+                          setDifficulty(Math.min(160, Math.max(10, Number(e.target.value))))
                         }
                         className="custom-input"
                       />

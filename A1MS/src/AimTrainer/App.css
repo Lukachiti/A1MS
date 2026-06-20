@@ -23,8 +23,12 @@
 }
 
 @keyframes overlayFadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes startPulse {
@@ -77,18 +81,17 @@
   gap: 25px;
 }
 
-
 @font-face {
-  font-family: 'Nexokora';
+  font-family: "Nexokora";
   font-style: normal;
   font-weight: normal;
-  src: url('../fonts/NexokoraTechno-Regular.otf') format('opentype');
+  src: url("../fonts/NexokoraTechno-Regular.otf") format("opentype");
 }
 
 .hero-button {
   border: none;
   color: greenyellow;
-  font-family: 'Nexokora', sans-serif;
+  font-family: "Nexokora", sans-serif;
   font-size: larger;
   text-shadow: 0 0 10px #00f3ff;
 }
@@ -113,19 +116,21 @@
 
 .hero-section .hero-board h2 {
   color: white;
-  font-family: 'Nexokora', sans-serif;
+  font-family: "Nexokora", sans-serif;
 }
 
 hr {
   background: linear-gradient(
-    90deg, 
-    rgba(163, 255, 0, 0) 0%, 
-    rgba(163, 255, 0, 1) 25%, 
-    rgba(163, 255, 0, 1) 75%, 
+    90deg,
+    rgba(163, 255, 0, 0) 0%,
+    rgba(163, 255, 0, 1) 25%,
+    rgba(163, 255, 0, 1) 75%,
     rgba(163, 255, 0, 0) 100%
   );
   border: none;
-  box-shadow: 0 0 8px rgba(163, 255, 0, 0.8), 0 0 2px rgba(163, 255, 0, 0.4);
+  box-shadow:
+    0 0 8px rgba(163, 255, 0, 0.8),
+    0 0 2px rgba(163, 255, 0, 0.4);
   height: 2px;
   margin: 0;
   opacity: 0.8;
@@ -137,7 +142,9 @@ hr {
   border: 1px solid rgba(163, 255, 0, 0.3);
   border-radius: 12px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(163, 255, 0, 0.05);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(163, 255, 0, 0.05);
   display: flex;
   justify-content: space-evenly;
   padding: 20px 10px;
@@ -185,11 +192,9 @@ hr {
 }
 
 .info-div img {
-  
   height: 38px;
   object-fit: contain;
 }
-
 
 .modal-overlay {
   animation: overlayFadeIn 0.3s ease forwards;
@@ -208,7 +213,9 @@ hr {
   background: rgba(4, 12, 4, 0.95);
   border: 2px solid #91ff00;
   border-radius: 16px;
-  box-shadow: 0 0 30px rgba(145, 255, 0, 0.3), inset 0 0 20px rgba(145, 255, 0, 0.1);
+  box-shadow:
+    0 0 30px rgba(145, 255, 0, 0.3),
+    inset 0 0 20px rgba(145, 255, 0, 0.1);
   display: flex;
   flex-direction: column;
   left: 50%;
@@ -223,7 +230,7 @@ hr {
 .gameover-modal h2 {
   background: transparent;
   color: #fff;
-  font-family: 'Nexokora', sans-serif;
+  font-family: "Nexokora", sans-serif;
   font-size: 28px;
   letter-spacing: 3px;
   margin: 0 0 15px 0;
@@ -269,7 +276,7 @@ hr {
   border-radius: 6px;
   color: #91ff00;
   cursor: pointer;
-  font-family: 'Nexokora', sans-serif;
+  font-family: "Nexokora", sans-serif;
   font-size: 16px;
   letter-spacing: 1px;
   padding: 10px;
@@ -297,7 +304,7 @@ hr {
 
 .Navbar h1 {
   color: white;
-  font-family: 'Nexokora', sans-serif;
+  font-family: "Nexokora", sans-serif;
   letter-spacing: 1px;
   margin: 5px;
 }
@@ -317,8 +324,7 @@ nav {
   box-shadow: none;
   color: white;
   text-decoration: none;
-  font-family: 'Nexokora', sans-serif;
-
+  font-family: "Nexokora", sans-serif;
 }
 
 .nav-button:hover {
@@ -330,7 +336,7 @@ nav {
   border: none;
   box-shadow: none;
   color: white;
-  font-family: 'Nexokora', sans-serif;
+  font-family: "Nexokora", sans-serif;
 }
 
 .nav-buttons:hover {
@@ -363,7 +369,9 @@ p {
   border: 1px solid rgba(145, 255, 0, 0.3);
   border-radius: 12px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(145, 255, 0, 0.05);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(145, 255, 0, 0.05);
   display: flex;
   flex-direction: column;
   height: 485px;
@@ -458,7 +466,7 @@ p {
   border-radius: 8px;
   color: #91ff00;
   cursor: pointer;
-  font-family: 'Nexokora', sans-serif;
+  font-family: "Nexokora", sans-serif;
   font-size: 24px;
   height: 60px;
   left: 50%;
@@ -475,7 +483,9 @@ p {
 .start:hover {
   background: rgba(145, 255, 0, 0.25);
   color: #fff;
-  text-shadow: 0 0 15px #91ff00, 0 0 30px #91ff00;
+  text-shadow:
+    0 0 15px #91ff00,
+    0 0 30px #91ff00;
   transform: translate(-50%, -50%) scale(1.05);
 }
 img {
@@ -499,13 +509,15 @@ img {
 }
 
 .trainingArea {
-  background-image: url(../assets/background.png);
   background-repeat: no-repeat;
   background-size: cover;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9), 0 12px 40px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.9),
+    0 12px 40px rgba(0, 0, 0, 0.6);
   height: 450px;
   position: relative;
   width: 900px;
 }
+

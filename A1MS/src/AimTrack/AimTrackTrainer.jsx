@@ -23,7 +23,9 @@ function AimTrackTrainer() {
   const [isActive, setIsActive] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [personalBest, setPersonalBest] = useState(0);
+  const [personalBest, setPersonalBest] = useState(() => {
+    return Number(localStorage.getItem("pb_aim_track")) || 0;
+  });
 
   const positionRef = useRef({ x: 0, y: 0 });
   const velocityRef = useRef({ x: 2, y: 2 });
@@ -166,7 +168,7 @@ function AimTrackTrainer() {
     <>
       <Navbar />
       <div className="App">
-        <section id="App-section" className="App-section">
+        <section style={{margin: "150px"}} id="App-section" className="App-section">
           <div className="ap">
             <div className="info">
               <div className="info-div">
@@ -283,7 +285,7 @@ function AimTrackTrainer() {
                         value={difficulty}
                         min="10"
                         max="160"
-                        onChange={(e) => setDifficulty(Math.max(10, Number(e.target.value)))}
+                        onChange={(e) => setDifficulty(Math.min(160, Math.max(10, Number(e.target.value))))}
                         className="custom-input"
                       />
                     ) : (
